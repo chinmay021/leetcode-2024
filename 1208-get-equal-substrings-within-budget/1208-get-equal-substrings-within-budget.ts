@@ -1,6 +1,5 @@
 function equalSubstring(s: string, t: string, maxCost: number): number {
     let left = 0;
-    let right = 0;
     let maxLenSoFar = 0;
     let currWindowCost = 0;
 
@@ -8,7 +7,7 @@ function equalSubstring(s: string, t: string, maxCost: number): number {
         currWindowCost += Math.abs(s.charCodeAt(right) - t.charCodeAt(right));
 
         while (currWindowCost > maxCost) {
-            currWindowCost -= Math.abs(s.charCodeAt(right) - t.charCodeAt(right));
+            currWindowCost -= Math.abs(s.charCodeAt(left) - t.charCodeAt(left));
             left++;
         }
         maxLenSoFar = Math.max(maxLenSoFar, right - left + 1);
