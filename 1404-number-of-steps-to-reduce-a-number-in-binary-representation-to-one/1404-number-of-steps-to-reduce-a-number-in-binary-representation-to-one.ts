@@ -1,3 +1,7 @@
+/* 
+    O(N) solution
+ */
+
 function numSteps(s: string): number {
     let count = 0;
     let carry = 0;
