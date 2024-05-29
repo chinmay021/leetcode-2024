@@ -1,5 +1,18 @@
 /* 
     O(N) solution
+    Explanation
+    Initialization:
+    steps to count the total steps needed.
+    carry to manage the carry when adding 1.
+    Loop through the String (Right to Left, Except the First Character):
+    If the current bit is 1:
+    No Carry: Two steps (add 1 to make it 0, then divide).
+    With Carry: One step (just divide, since it remains 1).
+    If the current bit is 0:
+    No Carry: One step (just divide).
+    With Carry: Two steps (turn 0 to 1, then divide).
+    Handle the Most Significant Bit:
+    If there is a carry left after the loop, add one more step.
  */
 
 function numSteps(s: string): number {
@@ -7,24 +20,24 @@ function numSteps(s: string): number {
     let carry = 0;
 
     // Traverse from the last bit to the first bit (excluding the most significant bit initially)
-    for(let i = s.length - 1; i > 0; --i){
-        if(s.charAt(i) === '1'){
-            if(carry === 0){
+    for (let i = s.length - 1; i > 0; --i) {
+        if (s.charAt(i) === '1') {
+            if (carry === 0) {
                 count += 2; // Add 1 (turn to 0) + divide
                 carry = 1;
-            }else{
+            } else {
                 count += 1; // just divide
             }
-        }else{
-            if(carry == 0){
+        } else {
+            if (carry == 0) {
                 count += 1; // just divide
-            }else{
+            } else {
                 count += 2;  // Turn to 1 + divide
             }
         }
     }
 
-    if(carry === 1){
+    if (carry === 1) {
         count += 1; // and at i = 0 its already 1 so 1 + 1 will turn 0 so divide i.e 1 more step.
     }
 
